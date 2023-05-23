@@ -10,13 +10,8 @@ I am currently pursuing my PhD at the [IMAPP institute at Radboud University, Ni
 
 ## Research Interest
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam finibus ipsum
-ac erat aliquam dapibus. Vestibulum vehicula placerat ex, a consectetur odio
-pharetra quis[^1]. Mauris id urna ante.
+My research primarily revolves around employing numerical relativity techniques to calculate the gravitational self force. I am especially interested in the IMRI-EMRI systems which are potential observational targets of the LISA mission. In parallel, I am developing higher order Summation by Parts Operators for spherical symmetry, including the origin in the domain. 
 
-Fusce pharetra diam ac nisi aliquet, velegestas ex iaculis. Pellentesque
-laoreet cursus tellus sed pellentesque. Praesent a rhoncus elit[^2]. Nunc
-ipsum nisl, consequat sit amet pretium quis, gravida id ipsum.
 
 ## Publications
 

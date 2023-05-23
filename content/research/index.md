@@ -4,6 +4,13 @@ date: 2023-05-23T11:18:13+02:00
 draft: false
 ---
 
+>There is no royal road to science,
+>and only those who do not dread the
+>fatiguing climb of its steep paths
+>have a chance of gaining its luminous summits.
+>
+>— Karl Marx, Capital, Vol. 1: A Critical Analysis of Capitalist Production
+
 ## Numerical relativity and Self Force
 My research primarily revolves around employing numerical relativity techniques to accurately model binaries exhibiting intermediate to extreme mass ratios, such as IMRIs (Intermediate Mass Ratio Inspirals) or EMRIs (Extreme Mass Ratio Inspirals). Specifically, I am engaged in developing a modified version of the effective source method that enables precise numerical calculations of the gravitational self force. 
 
