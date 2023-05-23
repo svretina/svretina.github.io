@@ -7,7 +7,7 @@ enableEmoji = true
 
 [params]
   author = "Stamatis Vretinaris"
-  description = "A simple monospaced resume theme for Hugo."
+  description = "Personal Website"
   favicon = "favicon.ico"  # path to a .ico to use as favicon
   logo = ""  # url or path to a logo to put in the header
   [params.footer]
