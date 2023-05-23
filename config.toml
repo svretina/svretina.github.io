@@ -4,6 +4,7 @@ title = "Stamatis Vretinaris"
 theme = 'researcher'
 disableKinds = ["taxonomy", "term"]
 enableEmoji = true
+googleAnalytics = "G-3MPGBV7LTZ"
 
 [params]
   author = "Stamatis Vretinaris"
