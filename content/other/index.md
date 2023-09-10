@@ -12,3 +12,4 @@ draft: false
 ## Non Scientific Articles
 
 - Women in Computer Science [[link](https://thepressproject.gr/gynaikes-stin-pliroforiki/)]
+- Antifa-Ost and Lina E case in Leipzig [[link](https://thepressproject.gr/ypothesi-antifa-ost-pos-i-germania-metatrepei-aristerous-agonistes-se-tromokrates/)] 
