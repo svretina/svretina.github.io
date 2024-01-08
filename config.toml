@@ -5,14 +5,16 @@ theme = 'researcher'
 disableKinds = ["taxonomy", "term"]
 enableEmoji = true
 googleAnalytics = "G-3MPGBV7LTZ"
+math = true
 
 [params]
   author = "Stamatis Vretinaris"
   description = "Personal Website"
   favicon = "favicon.ico"  # path to a .ico to use as favicon
   logo = ""  # url or path to a logo to put in the header
+  DateForm = "2.1.2006"
   [params.footer]
-    text = "Copyright (c) 2023-2024, Stamatis Vretinaris"
+    text = "Copyright (c) 2024-2025, Stamatis Vretinaris"
     # url = "https://github.com/svretina"
   [params.style]  # appearance options (can be omitted)
     fontFamily = "Inconsolata"
@@ -51,10 +53,24 @@ googleAnalytics = "G-3MPGBV7LTZ"
     name = "Research"
     url = "/research"
     weight = 2
+   [[menu.main]]
+    name = "Julia"
+    url = "/julia"
+    weight = 3
   [[menu.main]]
     name = "Other"
     url = "/other"
-    weight = 3
+    weight = 4
+
+
+
+[markup]
+  defaultMarkdownHandler = 'goldmark'
 
 [markup.goldmark.renderer]
   unsafe = true  # allow raw HTML in markdown files
+[markup.highlight]
+  # style = 'nord'
+  # style = 'paraiso-light'
+  # style = 'solarized-light'
+  style = 'witchhazel'
