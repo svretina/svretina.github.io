@@ -70,7 +70,7 @@ math = true
 [markup.goldmark.renderer]
   unsafe = true  # allow raw HTML in markdown files
 [markup.highlight]
-  # style = 'nord'
+  style = 'nord'
   # style = 'paraiso-light'
   # style = 'solarized-light'
-  style = 'witchhazel'
+  # style = 'witchhazel'
