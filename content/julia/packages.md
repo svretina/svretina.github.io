@@ -1,5 +1,5 @@
 ---
-title: "Packages"
+title: "Packages in Julia"
 date: 2024-05-25T18:51:48-04:00
 draft: false
 ---
