@@ -1,6 +1,6 @@
 ---
 title: "Packages in Julia"
-date: 2024-05-25T18:51:48-04:00
+date: 2024-05-22T19:59:56+02:00
 draft: false
 ---
 
