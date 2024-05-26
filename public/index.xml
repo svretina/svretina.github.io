@@ -1,7 +1,40 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Stamatis Vretinaris</title><link>https://svretina.github.io/</link><description>Recent content on Stamatis Vretinaris</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 22 May 2023 19:35:02 +0200</lastBuildDate><atom:link href="https://svretina.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Packages in Julia</title><link>https://svretina.github.io/julia/packages/</link><pubDate>Sat, 25 May 2024 18:51:48 -0400</pubDate><guid>https://svretina.github.io/julia/packages/</guid><description>Packages in Julia When experimenting and writing new code a package structure seems to be an overkill, but as a project matures the package structure provides some advantages (imho).
-First let us look how a package MyPackage looks like in Julia
-&amp;gt; ls MyPackage .git .github/workflows docs src test .gitignore LICENSE Project.toml Manifest.toml README.md /src ls /src MyPackage.jl its the folder where your code will live. In a newly initiallized package there will be always the file MyPackage.</description></item><item><title>Introduction to SIMD in Julia</title><link>https://svretina.github.io/julia/simd/</link><pubDate>Mon, 01 Jan 2024 19:59:56 +0200</pubDate><guid>https://svretina.github.io/julia/simd/</guid><description>SIMD instructions in Julia SIMD stands for “single instruction, multiple data” and is a class of parallel computers in Flynn&amp;rsquo;s taxonomy. It describes computers with multiple processing elements that perform the same operation on multiple data points simultaneously.
-In order to take advantage of the modern CPU&amp;rsquo;s potential it is essential to utilize SIMD instructions. Lets check if our CPU supports these features. On a UNIX machine
-lscpu | grep avx lscpu | grep sse function func return 0 end</description></item><item><title>Other</title><link>https://svretina.github.io/other/</link><pubDate>Tue, 23 May 2023 14:37:37 +0200</pubDate><guid>https://svretina.github.io/other/</guid><description>Public outreach Talk at the Leipzig International School [link] Non Scientific Articles Women in Computer Science [link] Antifa-Ost and Lina E case in Leipzig [link]</description></item><item><title>Research</title><link>https://svretina.github.io/research/</link><pubDate>Tue, 23 May 2023 11:18:13 +0200</pubDate><guid>https://svretina.github.io/research/</guid><description>There is no royal road to science, and only those who do not dread the fatiguing climb of its steep paths have a chance of gaining its luminous summits.
-— Karl Marx, Capital, Vol. 1: A Critical Analysis of Capitalist Production
-Numerical relativity and Self Force My research primarily revolves around employing numerical relativity techniques to accurately model binaries exhibiting intermediate to extreme mass ratios, such as IMRIs (Intermediate Mass Ratio Inspirals) or EMRIs (Extreme Mass Ratio Inspirals).</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Stamatis Vretinaris</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on Stamatis Vretinaris</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 25 May 2024 20:22:07 -0400</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Empty</title>
+      <link>http://localhost:1313/julia/empty/</link>
+      <pubDate>Sat, 25 May 2024 20:22:07 -0400</pubDate>
+      <guid>http://localhost:1313/julia/empty/</guid>
+      <description>aSDFASDFASD</description>
+    </item>
+    <item>
+      <title>Packages in Julia</title>
+      <link>http://localhost:1313/julia/packages/</link>
+      <pubDate>Sat, 25 May 2024 18:51:48 -0400</pubDate>
+      <guid>http://localhost:1313/julia/packages/</guid>
+      <description>Packages in Julia When experimenting and writing new code a package structure seems to be an overkill, but as a project matures the package structure provides some advantages (imho).&#xA;First let us look how a package MyPackage looks like in Julia&#xA;&amp;gt; ls MyPackage .git .github/workflows docs src test .gitignore LICENSE Project.toml Manifest.toml README.md /src ls /src MyPackage.jl its the folder where your code will live. In a newly initiallized package there will be always the file MyPackage.</description>
+    </item>
+    <item>
+      <title>Other</title>
+      <link>http://localhost:1313/other/</link>
+      <pubDate>Tue, 23 May 2023 14:37:37 +0200</pubDate>
+      <guid>http://localhost:1313/other/</guid>
+      <description>Public outreach Talk at the Leipzig International School [link] Non Scientific Articles Women in Computer Science [link] Antifa-Ost and Lina E case in Leipzig [link] </description>
+    </item>
+    <item>
+      <title>Research</title>
+      <link>http://localhost:1313/research/</link>
+      <pubDate>Tue, 23 May 2023 11:18:13 +0200</pubDate>
+      <guid>http://localhost:1313/research/</guid>
+      <description>There is no royal road to science, and only those who do not dread the fatiguing climb of its steep paths have a chance of gaining its luminous summits.&#xA;— Karl Marx, Capital, Vol. 1: A Critical Analysis of Capitalist Production&#xA;Numerical relativity and Self Force My research primarily revolves around employing numerical relativity techniques to accurately model binaries exhibiting intermediate to extreme mass ratios, such as IMRIs (Intermediate Mass Ratio Inspirals) or EMRIs (Extreme Mass Ratio Inspirals).</description>
+    </item>
+  </channel>
+</rss>

@@ -1,7 +1,7 @@
 ---
 title: "Introduction to SIMD in Julia"
 date: 2024-01-01T19:59:56+02:00
-draft: false
+draft: true
 ---
 
 ## SIMD instructions in Julia
