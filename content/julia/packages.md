@@ -158,7 +158,6 @@ You need to create a new repo in GitHub online. Make sure to not forget to add `
 Usually you would have to do
 ```sh
 > git init
-> git add README.md
 > git commit -m "first commit"
 > git branch -M master
 > git remote add origin git@github.com:svretina/MyPackage.git
@@ -182,7 +181,7 @@ To github.com:svretina/MyPackage.jl.git
 branch 'master' set up to track 'origin/master'.
 ```
 
-## Some Git sugah
+## Some Git shugah
 When you browse all of these cool libraries they have these nice colorfull buttons saying `docs|stable` or `docs|dev` or `CI|passing` etc. `PkgTemplates.jl` gots your back and you automatically have these nice thingies in your README.md file that was generated.
 
 # MyPackage
