@@ -6,21 +6,28 @@
     <description>Recent content on Stamatis Vretinaris</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 25 May 2024 20:22:07 -0400</lastBuildDate>
+    <lastBuildDate>Sat, 01 Jun 2024 20:30:29 -0400</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Empty</title>
-      <link>http://localhost:1313/julia/empty/</link>
-      <pubDate>Sat, 25 May 2024 20:22:07 -0400</pubDate>
-      <guid>http://localhost:1313/julia/empty/</guid>
-      <description>aSDFASDFASD</description>
+      <title>Packages2</title>
+      <link>http://localhost:1313/julia/packages2/</link>
+      <pubDate>Sat, 01 Jun 2024 20:30:29 -0400</pubDate>
+      <guid>http://localhost:1313/julia/packages2/</guid>
+      <description>&amp;hellip;now that we created our first package, let&amp;rsquo;s discover some of the neat things you can do with them, that would be impossible otherwise.&#xA;Let&amp;rsquo;s recall what your workflow would look like if one would use scripts. Say you wrote some functions (you should write functions and not just code in your files, because the compiler cannot optimize your code) in a file called script.jl.&#xA;&amp;gt; include(&amp;#34;script.jl&amp;#34;) This will evaluate the contents of your script in the global scope on Main.</description>
     </item>
     <item>
       <title>Packages in Julia</title>
       <link>http://localhost:1313/julia/packages/</link>
-      <pubDate>Sat, 25 May 2024 18:51:48 -0400</pubDate>
+      <pubDate>Wed, 22 May 2024 19:59:56 +0200</pubDate>
       <guid>http://localhost:1313/julia/packages/</guid>
       <description>Packages in Julia When experimenting and writing new code a package structure seems to be an overkill, but as a project matures the package structure provides some advantages (imho).&#xA;First let us look how a package MyPackage looks like in Julia&#xA;&amp;gt; ls MyPackage .git .github/workflows docs src test .gitignore LICENSE Project.toml Manifest.toml README.md /src ls /src MyPackage.jl its the folder where your code will live. In a newly initiallized package there will be always the file MyPackage.</description>
+    </item>
+    <item>
+      <title>Introduction to SIMD in Julia</title>
+      <link>http://localhost:1313/julia/simd/</link>
+      <pubDate>Mon, 01 Jan 2024 19:59:56 +0200</pubDate>
+      <guid>http://localhost:1313/julia/simd/</guid>
+      <description>SIMD instructions in Julia SIMD stands for “single instruction, multiple data” and is a class of parallel computers in Flynn&amp;rsquo;s taxonomy. It describes computers with multiple processing elements that perform the same operation on multiple data points simultaneously.&#xA;In order to take advantage of the modern CPU&amp;rsquo;s potential it is essential to utilize SIMD instructions. Lets check if our CPU supports these features. On a UNIX machine&#xA;lscpu | grep avx lscpu | grep sse function func return 0 end </description>
     </item>
     <item>
       <title>Other</title>
