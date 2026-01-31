@@ -1,0 +1,27 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-business-bg: #202020;
+  --color-business-card: #23282E;
+  --color-business-primary: #1C4E80;
+  --color-business-primary-hover: #163E66;
+  --color-business-secondary: #7C909A;
+  --color-business-accent: #EA6947;
+}
+
+@layer base {
+  :root {
+    --background: var(--color-business-bg);
+    --foreground: #d1d5db;
+  }
+}
+
+body {
+  background-color: var(--color-business-bg);
+  color: #e2e8f0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@import 'katex/dist/katex.min.css';

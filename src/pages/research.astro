@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ResearchFeed from '../components/ResearchFeed.astro';
+---
+
+<Layout title="Research | Stamatis Vretinaris">
+	<section>
+		<h1 class="text-3xl font-bold text-slate-100 mb-8 flex items-center gap-3">
+			<span class="text-business-primary">#</span> Research & Publications
+		</h1>
+		<div class="prose prose-invert prose-slate mb-12 max-w-none">
+			<p class="text-lg text-slate-400 leading-relaxed">
+				My research focuses on the intersection of <strong class="text-slate-200">General Relativity</strong> and <strong class="text-slate-200">Computational Science</strong>. 
+				I specialize in modeling binary systems with extreme mass ratios (EMRIs) and developing high-order numerical methods for hyperbolic PDEs on complex domains.
+			</p>
+		</div>
+
+		<div class="mb-12 p-6 rounded-lg border border-white/10 bg-business-card">
+			<h2 class="text-xl font-bold text-slate-200 mb-4 flex items-center gap-2">
+				<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-business-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2L20 2v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+				Selected Publications (Auto-fetched from arXiv)
+			</h2>
+			<ResearchFeed />
+		</div>
+	</section>
+</Layout>

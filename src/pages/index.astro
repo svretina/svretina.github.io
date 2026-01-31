@@ -1,0 +1,92 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ResearchFeed from '../components/ResearchFeed.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects'))
+	.sort((a, b) => a.data.order - b.data.order);
+
+---
+
+<Layout title="Stamatis Vretinaris | Computational Physicist">
+	<!-- Executive Summary -->
+	<section class="mb-16">
+		<h1 class="text-3xl font-bold text-slate-100 mb-6">Stamatis Vretinaris.</h1>
+		<div class="text-lg text-slate-400 leading-relaxed max-w-2xl space-y-4">
+			<p>
+				Computational Physicist and Research Software Engineer specializing in <span class="text-slate-200 font-medium">Numerical Relativity</span> and <span class="text-slate-200 font-medium">High-Performance Computing</span>.
+			</p>
+			<p>
+				I build scalable simulation frameworks for gravitational wave modeling and develop novel numerical methods for solving partial differential equations on complex domains.
+			</p>
+
+            <div class="mt-6 border-l-2 border-business-primary pl-4">
+                <p class="text-slate-300 font-medium">Doctoral Researcher</p>
+                <div class="text-sm text-slate-400 mt-1 space-y-1">
+                    <a href="https://www.aei.mpg.de/" target="_blank" class="hover:text-business-primary transition-colors block">Max Planck Institute for Gravitational Physics (Albert Einstein Institute)</a>
+                    <a href="https://www.ru.nl/en/imapp" target="_blank" class="hover:text-business-primary transition-colors block">Institute for Mathematics, Astrophysics and Particle Physics, Radboud University</a>
+                </div>
+                <p class="text-xs text-slate-500 mt-3">
+                    Supervisors: Badri Krishnan & <a href="https://github.com/eschnett" target="_blank" class="hover:text-business-primary transition-colors">Erik Schnetter</a>
+                </p>
+            </div>
+		</div>
+		<div class="mt-8 flex gap-4">
+			<a href="mailto:svretina@physics.auth.gr" class="px-5 py-2.5 bg-business-primary text-white rounded font-medium hover:bg-business-primary-hover transition-colors shadow-lg shadow-blue-900/20">
+				Contact Me
+			</a>
+			<a href="https://github.com/svretina" class="px-5 py-2.5 border border-slate-700 text-slate-300 rounded font-medium hover:border-business-primary hover:bg-business-primary hover:text-white transition-all flex items-center gap-2">
+				<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+				GitHub
+			</a>
+            <a href="https://scholar.google.com/citations?user=Oqk8k20AAAAJ&hl=en" class="px-5 py-2.5 border border-slate-700 text-slate-300 rounded font-medium hover:border-slate-500 hover:text-white transition-colors flex items-center gap-2">
+				<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0.5 9.5 12 1l11.5 9-5.242 3.769C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+                Scholar
+			</a>
+		</div>
+	</section>
+
+	<hr class="border-slate-800 mb-16" />
+
+	<!-- Selected Projects -->
+	<section class="mb-16">
+		<h2 class="text-xl font-bold text-slate-200 mb-8 flex items-center gap-2">
+			<span class="text-business-primary">#</span> Selected Projects
+		</h2>
+		<div class="grid gap-4">
+			{projects.map(project => (
+				<a href={project.data.repoUrl} target="_blank" class="group block p-5 rounded-lg border border-white/10 bg-business-card hover:border-business-primary transition-all">
+					<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+						<h3 class="font-bold text-slate-200 group-hover:text-business-primary transition-colors">
+							{project.data.title}
+						</h3>
+						<div class="flex gap-2">
+							{project.data.stack.map(tech => (
+								<span class="text-xs font-mono px-2 py-0.5 rounded bg-business-bg text-slate-400 border border-white/10">
+									{tech}
+								</span>
+							))}
+						</div>
+					</div>
+					<p class="text-slate-400 text-sm leading-relaxed">
+						{project.body}
+					</p>
+				</a>
+			))}
+		</div>
+		<div class="mt-6 text-right">
+			<a href="https://github.com/svretina" class="text-sm text-slate-500 hover:text-business-primary font-medium">View all on GitHub →</a>
+		</div>
+	</section>
+
+	<hr class="border-white/10 mb-16" />
+
+	<!-- Recent Research -->
+	<section>
+		<h2 class="text-xl font-bold text-slate-200 mb-8 flex items-center gap-2">
+			<span class="text-business-primary">#</span> Recent Research
+		</h2>
+		<ResearchFeed />
+	</section>
+
+</Layout>

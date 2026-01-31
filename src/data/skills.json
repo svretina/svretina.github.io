@@ -1,0 +1,41 @@
+{
+    "numerical_methods": [
+        "Summation By Parts (SBP) Operators",
+        "Finite Volume Methods (FVM)",
+        "Finite Difference Methods (FDM)",
+        "Monte Carlo Methods",
+        "Discontinuous Galerkin (DG)"
+    ],
+    "mathematics": [
+        "General Relativity & Gravitational Waves",
+        "Spherical Harmonics",
+        "Numerical Analysis",
+        "Hyperbolic Partial Differential Equations",
+        "Elliptic Partial Differential Equations",
+        "Bayesian Inference"
+    ],
+    "hpc": [
+        "OpenMP Parallelization",
+        "Slurm / HTCondor Cluster Management",
+        "Performance & Memory Profiling (LIKWID)",
+        "SIMD Optimization"
+    ],
+    "software": [
+        "CI/CD (GitHub Actions)",
+        "Unit Testing & Coverage Analysis",
+        "Docker & Containerization",
+        "Package Development (Julia/Python)",
+        "Git / GitHub Flow"
+    ],
+    "languages": [
+        "Julia",
+        "Python",
+        "C++",
+        "C",
+        "Fortran",
+        "Mathematica",
+        "Bash",
+        "LaTeX",
+        "Linux"
+    ]
+}

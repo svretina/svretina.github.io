@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<Layout title="Blog | Stamatis Vretinaris">
+	<section>
+		<h1 class="text-3xl font-bold text-slate-100 mb-12 flex items-center gap-3">
+			<span class="text-business-primary">#</span> Technical Blog
+		</h1>
+
+		<div class="space-y-12">
+			{posts.map((post) => (
+				<a href={`/blog/${post.slug}`} class="group block border-b border-white/10 pb-8 hover:border-business-primary/50 transition-colors">
+					<div class="flex flex-col md:flex-row gap-6">
+						<div class="md:w-32 flex-shrink-0">
+							<time datetime={post.data.date.toISOString()} class="text-sm font-mono text-slate-500">
+								{post.data.date.toLocaleDateString('en-us', {
+									year: 'numeric',
+									month: 'short',
+									day: 'numeric',
+								})}
+							</time>
+						</div>
+						<div class="flex-grow">
+							<h2 class="text-xl font-bold text-slate-200 group-hover:text-business-primary transition-colors">
+								{post.data.title}
+							</h2>
+							{post.data.description && <p class="text-slate-400 text-sm mt-2 leading-relaxed">{post.data.description}</p>}
+						</div>
+					</div>
+				</a>
+			))}
+		</div>
+	</section>
+</Layout>

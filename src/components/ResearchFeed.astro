@@ -1,0 +1,178 @@
+---
+interface Paper {
+  title: string;
+  link: string;
+  published: Date;
+  arxivId?: string;
+  doi?: string;
+  journalRef?: string;
+  journalUrl?: string;
+}
+
+let papers: Paper[] = [];
+let error = false;
+
+try {
+  // Parallel fetch: ORCID (primary) & arXiv (fallback/enrichment)
+  const [orcidRes, arxivRes] = await Promise.all([
+    fetch('https://pub.orcid.org/v3.0/0000-0001-7575-813X/works', { headers: { 'Accept': 'application/json' } }),
+    fetch('https://export.arxiv.org/api/query?search_query=au:Vretinaris&sortBy=submittedDate&sortOrder=descending&max_results=50')
+  ]);
+
+  let orcidData: any = {};
+  let arxivEntries: any[] = [];
+
+  // Process ORCID Response
+  if (orcidRes.ok) {
+    orcidData = await orcidRes.json();
+  }
+
+  // Process arXiv Response
+  if (arxivRes.ok) {
+    const arxivText = await arxivRes.text();
+    const entryRegex = /<entry>([\s\S]*?)<\/entry>/g;
+    let match;
+    while ((match = entryRegex.exec(arxivText)) !== null) {
+      const entry = match[1];
+      // Filter strictly for author to avoid noise
+      if (entry.includes('<name>Stamatis Vretinaris</name>') || entry.includes('<name>S. Vretinaris</name>')) {
+        const titleMatch = entry.match(/<title>([\s\S]*?)<\/title>/);
+        const idMatch = entry.match(/<id>(.*?)<\/id>/);
+        const doiMatch = entry.match(/<arxiv:doi>(.*?)<\/arxiv:doi>/);
+        
+        if (titleMatch && idMatch) {
+            arxivEntries.push({
+                title: titleMatch[1].replace(/\n/g, ' ').trim(),
+                arxivId: idMatch[1].trim().split('/').pop(),
+                doi: doiMatch ? doiMatch[1].trim() : null
+            });
+        }
+      }
+    }
+  }
+
+  // mergeHelper: Normalize titles for fuzzy matching
+  const normalize = (str: string) => str.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+  // Build Paper List from ORCID (Primary Source)
+  papers = (orcidData.group || []).map((group: any) => {
+    const work = group['work-summary'][0];
+    const title = work.title.title.value;
+    const journalTitle = work['journal-title']?.value;
+    
+    // Parse date
+    let pubDate = new Date();
+    if (work['publication-date']) {
+      const year = work['publication-date'].year?.value;
+      const month = work['publication-date'].month?.value || '01';
+      const day = work['publication-date'].day?.value || '01';
+      if (year) pubDate = new Date(`${year}-${month}-${day}`);
+    }
+
+    // Extract External IDs from Group
+    let arxivId, arxivUrl, doi, doiUrl;
+    const externalIds = group['external-ids']?.['external-id'] || work['external-ids']?.['external-id'];
+    
+    if (externalIds) {
+      externalIds.forEach((id: any) => {
+        const type = id['external-id-type'];
+        const value = id['external-id-value'];
+        if (type === 'arxiv') {
+          arxivId = value;
+          arxivUrl = `https://arxiv.org/abs/${value}`;
+        } else if (type === 'doi') {
+          doi = value;
+          doiUrl = `https://doi.org/${value}`;
+        }
+      });
+    }
+
+    // ENRICHMENT: If arXiv ID is missing, try to find it in arXiv fetch data
+    if (!arxivId) {
+        // 1. Try Match by DOI
+        if (doi) {
+            const match = arxivEntries.find(e => e.doi === doi);
+            if (match) {
+                arxivId = match.arxivId;
+                arxivUrl = `https://arxiv.org/abs/${arxivId}`;
+            }
+        }
+        // 2. Try Match by Title (Fuzzy)
+        if (!arxivId) {
+            const normTitle = normalize(title);
+            const match = arxivEntries.find(e => normalize(e.title).includes(normTitle) || normTitle.includes(normalize(e.title)));
+            if (match) {
+                arxivId = match.arxivId;
+                arxivUrl = `https://arxiv.org/abs/${arxivId}`;
+            }
+        }
+    }
+
+    const mainLink = doiUrl || arxivUrl || work.url?.value || '#';
+
+    return {
+      title,
+      link: mainLink,
+      published: pubDate,
+      arxivId,
+      doi,
+      journalRef: journalTitle,
+      journalUrl: doiUrl
+    };
+  });
+
+  // Sort by date descending
+  papers.sort((a, b) => b.published.getTime() - a.published.getTime());
+
+} catch (e) {
+  console.error('Error fetching research papers:', e);
+  error = true;
+}
+---
+
+<div id="research-feed" class="space-y-6">
+  {error && (
+     <p class="text-red-400/50 text-sm">
+       Failed to load research feed. Please check your connection.
+     </p>
+  )}
+
+  {!error && papers.length === 0 && (
+    <p class="text-slate-500 italic">No publications found on ORCID.</p>
+  )}
+
+  <ul class="divide-y divide-white/10">
+    {papers.map(paper => (
+      <li class="group flex gap-4 md:gap-8 py-4 items-baseline">
+        <div class="flex-shrink-0 w-16 text-right font-mono text-sm text-slate-500">
+          {paper.published.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+        </div>
+        <div class="flex-grow">
+          <a href={paper.link} target="_blank" class="text-slate-200 font-medium hover:text-business-primary transition-colors block mb-1">
+            {paper.title}
+          </a>
+          <div class="flex flex-col sm:flex-row gap-2 sm:gap-4 text-xs">
+             {paper.arxivId && (
+                <a href={paper.arxivUrl || `https://arxiv.org/abs/${paper.arxivId}`} target="_blank" class="text-business-secondary font-mono hover:text-business-primary transition-colors w-fit">
+                  arXiv:{paper.arxivId}
+                </a>
+             )}
+             
+             {paper.journalRef && paper.journalUrl && (
+               <div class="text-slate-500 font-medium">
+                 Published: <a href={paper.journalUrl} target="_blank" class="text-business-secondary hover:text-business-primary transition-colors">{paper.journalRef}</a>
+               </div>
+             )}
+             
+             {!paper.journalRef && paper.doi && (
+                <a href={`https://doi.org/${paper.doi}`} target="_blank" class="flex items-center gap-1 text-slate-500 hover:text-business-primary transition-colors">
+                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                   Journal Link
+                 </a>
+             )}
+          </div>
+        </div>
+      </li>
+    ))}
+  </ul>
+</div>
