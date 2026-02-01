@@ -1,8 +1,8 @@
 ---
 title: "FastTanhSinhQuadrature.jl"
-stack: ["Julia", "Numerical Integration", "SIMD", "JOSS"]
+stack: ["Julia"]
 repoUrl: "https://github.com/svretina/FastTanhSinhQuadrature.jl"
 featured: true
-order: 1
+order: 4
 ---
-FastTanhSinhQuadrature.jl is designed for high-performance numerical integration, particularly effective for functions with endpoint singularities. It combines the rigorous accuracy of Tanh-Sinh quadrature with modern Julia performance features like SIMD acceleration. Backend for SciML/Integrals.jl
+Fast and high-precision numerical integration using Tanh-Sinh (Double Exponential) quadrature in Julia.
