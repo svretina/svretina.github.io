@@ -3,9 +3,9 @@ import Layout from "../layouts/Layout.astro";
 import ResearchFeed from "../components/ResearchFeed.astro";
 import { getCollection } from "astro:content";
 
-const projects = (await getCollection("projects")).sort(
-	(a, b) => a.data.order - b.data.order,
-);
+const projects = (await getCollection("projects"))
+	.sort((a, b) => a.data.order - b.data.order)
+	.slice(0, 4);
 ---
 
 <Layout title="Stamatis Vretinaris | Computational Physicist">
@@ -143,9 +143,9 @@ const projects = (await getCollection("projects")).sort(
 		</div>
 		<div class="mt-6 text-right">
 			<a
-				href="https://github.com/svretina"
+				href="/projects"
 				class="text-sm text-slate-500 hover:text-business-primary font-medium"
-				>View all on GitHub →</a
+				>View all projects →</a
 			>
 		</div>
 	</section>
