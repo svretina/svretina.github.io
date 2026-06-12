@@ -18,6 +18,17 @@ const projects = defineCollection({
         title: z.string(),
         stack: z.array(z.string()),
         repoUrl: z.string().url(),
+        summary: z.string().optional(),
+        insights: z.array(z.object({
+            title: z.string(),
+            body: z.string(),
+            imageUrl: z.string().url().optional(),
+            imageAlt: z.string().optional(),
+        })).default([]),
+        links: z.array(z.object({
+            label: z.string(),
+            url: z.string().url(),
+        })).default([]),
         featured: z.boolean().default(false),
         order: z.number().default(99),
     }),

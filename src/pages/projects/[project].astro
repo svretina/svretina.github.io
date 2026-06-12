@@ -1,0 +1,134 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+	const projects = await getCollection("projects");
+
+	return projects.map((project) => ({
+		params: { project: project.id.replace(/\.md$/, "") },
+		props: { project },
+	}));
+}
+
+const { project } = Astro.props;
+
+const summary = project.data.summary || project.body;
+---
+
+<Layout
+	title={`${project.data.title} | Research Software`}
+	description={summary}
+>
+	<section class="mb-10">
+		<a
+			href="/projects"
+			class="text-sm text-slate-500 hover:text-business-primary transition-colors"
+		>
+			← Back to projects
+		</a>
+	</section>
+
+	<section class="mb-10">
+		<div class="flex flex-col gap-5">
+			<div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+				<div>
+					<p class="text-sm uppercase tracking-[0.22em] text-slate-500 mb-3">
+						Research Software
+					</p>
+					<h1 class="text-3xl font-bold text-slate-100">
+						{project.data.title}
+					</h1>
+					<p class="mt-4 max-w-3xl text-lg leading-relaxed text-slate-400">
+						{project.body}
+					</p>
+				</div>
+
+				<div class="flex flex-wrap gap-2 md:max-w-sm md:justify-end">
+					{project.data.stack.map((item) => (
+						<span class="text-xs font-mono px-3 py-1 rounded-full bg-business-card text-slate-300 border border-white/10">
+							{item}
+						</span>
+					))}
+				</div>
+			</div>
+
+			<div class="flex flex-wrap gap-3">
+				<a
+					href={project.data.repoUrl}
+					target="_blank"
+					class="px-4 py-2 rounded border border-business-primary bg-business-primary text-white font-medium hover:bg-business-primary-hover transition-colors"
+				>
+					GitHub
+				</a>
+				{project.data.links.map((link) => (
+					<a
+						href={link.url}
+						target="_blank"
+						class="px-4 py-2 rounded border border-white/10 bg-business-card text-slate-300 hover:border-business-primary hover:text-white transition-colors"
+					>
+						{link.label}
+					</a>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="grid gap-6 md:grid-cols-[2fr_1fr]">
+		<div class="rounded-2xl border border-white/10 bg-business-card p-6">
+			<h2 class="text-lg font-semibold text-slate-100 mb-4">Summary</h2>
+			<div class="space-y-4 text-slate-300 leading-relaxed">
+				<p>{summary}</p>
+			</div>
+		</div>
+
+		<div class="rounded-2xl border border-white/10 bg-business-card p-6">
+			<h2 class="text-lg font-semibold text-slate-100 mb-4">Keywords</h2>
+			<div class="flex flex-wrap gap-2">
+				{project.data.stack.map((item) => (
+					<span class="text-xs font-mono px-3 py-1 rounded-full bg-business-bg text-slate-300 border border-white/10">
+						{item}
+					</span>
+				))}
+			</div>
+		</div>
+	</section>
+
+	{
+		project.data.insights.length > 0 && (
+			<section class="mt-8 rounded-2xl border border-white/10 bg-business-card p-6">
+				<h2 class="text-lg font-semibold text-slate-100 mb-6">
+					Key Insights
+				</h2>
+				<div class="space-y-8">
+					{project.data.insights.map((insight) => (
+						<article class="grid gap-5 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
+							<div>
+								<h3 class="text-base font-semibold text-slate-100 mb-2">
+									{insight.title}
+								</h3>
+								<p class="text-slate-300 leading-relaxed">
+									{insight.body}
+								</p>
+							</div>
+							{insight.imageUrl && (
+								<a
+									href={insight.imageUrl}
+									target="_blank"
+									class="block overflow-hidden rounded-xl border border-white/10 bg-business-bg"
+								>
+									<img
+										src={insight.imageUrl}
+										alt={insight.imageAlt || insight.title}
+										loading="lazy"
+										class="h-full w-full object-cover"
+									/>
+								</a>
+							)}
+						</article>
+					))}
+				</div>
+			</section>
+		)
+	}
+</Layout>

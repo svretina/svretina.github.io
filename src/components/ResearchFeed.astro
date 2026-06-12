@@ -47,12 +47,16 @@ try {
         const titleMatch = entry.match(/<title>([\s\S]*?)<\/title>/);
         const idMatch = entry.match(/<id>(.*?)<\/id>/);
         const doiMatch = entry.match(/<arxiv:doi>(.*?)<\/arxiv:doi>/);
+        const publishedMatch = entry.match(/<published>(.*?)<\/published>/);
 
         if (titleMatch && idMatch) {
           arxivEntries.push({
             title: titleMatch[1].replace(/\n/g, " ").trim(),
             arxivId: idMatch[1].trim().split("/").pop(),
             doi: doiMatch ? doiMatch[1].trim() : null,
+            published: publishedMatch
+              ? new Date(publishedMatch[1].trim())
+              : new Date(),
           });
         }
       }
@@ -137,6 +141,30 @@ try {
       journalUrl: doiUrl,
     };
   });
+
+  // Add arXiv papers that are not yet present in ORCID.
+  const seenArxivIds = new Set(
+    papers.map((paper) => paper.arxivId).filter(Boolean),
+  );
+  const seenTitles = new Set(papers.map((paper) => normalize(paper.title)));
+
+  const arxivOnlyPapers = arxivEntries
+    .filter((entry) => {
+      const normalizedTitle = normalize(entry.title);
+      return (
+        !seenArxivIds.has(entry.arxivId) && !seenTitles.has(normalizedTitle)
+      );
+    })
+    .map((entry) => ({
+      title: entry.title,
+      link: `https://arxiv.org/abs/${entry.arxivId}`,
+      published: entry.published,
+      arxivId: entry.arxivId,
+      doi: entry.doi || undefined,
+      arxivUrl: `https://arxiv.org/abs/${entry.arxivId}`,
+    }));
+
+  papers = [...papers, ...arxivOnlyPapers];
 
   // Sort by date descending
   papers.sort((a, b) => b.published.getTime() - a.published.getTime());
